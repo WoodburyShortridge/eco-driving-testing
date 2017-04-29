@@ -2,7 +2,7 @@
 
 ## Demo
 
-### https://woodburyshortridge.github.io/eco-driving-testing/
+### See https://woodburyshortridge.github.io/eco-driving-testing/ for demo
 
 For driving simulator prototypes see https://github.com/WoodburyShortridge/registerProj
 
