@@ -4,6 +4,8 @@
 
 https://woodburyshortridge.github.io/eco-driving-testing/
 
+### For driving simulator prototypes see https://github.com/WoodburyShortridge/registerProj
+
 ## Overview of the README:
 1. Overall Layout
 2. Modifying for other tasks
