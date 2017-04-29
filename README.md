@@ -1,7 +1,10 @@
-SoundCardWebApp
-===============
+# SoundCardWebApp
 
-Overview of the README:
+## Demo
+
+https://woodburyshortridge.github.io/eco-driving-testing/
+
+## Overview of the README:
 1. Overall Layout
 2. Modifying for other tasks
 3. Getting data ready for analysis
@@ -15,7 +18,7 @@ Overview of the README:
 
 This program is made up of the three different pages: an intro, the tutorial page, and the test.
 
-Intro: includes a short text description of the overall layout, and generates the random order for the pages
+Index/Intro: includes a short text description of the overall layout, and generates the random order for the pages
 
 Tutorial Page: includes descriptive text about the task itself (the drag and drop, this is a place to have a participant/user practice the task). They'll need to match a sound to each icon before they can go to the next page.
 
