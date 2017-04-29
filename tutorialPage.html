@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Woodbury Shortridge - user-centered design process for auditory eco-driving interface. Orig. drag/drop testing by Brianna Tomlinson with help/formatting assistance from Joshua
+Lapinski. GT sonification lab.-->
+
+	<!--This is the tutorial page. It's supposed to help the users/participants practice
+	with the jQuery drag-and-drop interface. -->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Sound Card Sorting Web Page Test</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<!--jQuery-->
+	<script src="js/jquery-2.1.3.min.js"></script>
+
+	<!--jQuery-UI-->
+	<script src="js/jquery-ui.js"></script>
+	<link rel="stylesheet" href="css/jquery-ui.css">
+
+	<style type="text/css">
+		div.sound {
+		width: 50px;
+		height: 50px;
+		float: left;
+		padding: 0.5em;
+		margin: 10px 10px 10px 20px;
+		background-color: #AAA;
+		}
+
+		div.dropzone{
+		width: 250px;
+		height: 250px;
+		padding: 0.5em;
+		float: left;
+		margin: 10px;
+		background-color: #CDCDCD;
+		}
+
+		.soundController{
+		width: 25px;
+		height: 25px;
+		margin: 5px 5px 5px 5px;
+		border: 1px solid #eee;
+		}
+
+		.panel-primary{
+			width: 768px;
+		}
+
+	</style>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-2"></div>
+			<div class="col-xs-8">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Sound Card Section Demo</h3>
+					</div>
+
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-12">
+								<p> For each sound, you can double click the icon (inside of the white box) to listen to it. The two sample sounds here are the beeps from the satellite Sputnik and the morse code for the word "hi." You can listen to each sound as many times as you like. Once a sound begins playing it will continue until finished, there is no way to stop or pause a sound. All sounds are less than 5 seconds.</p>
+
+								<p> Click and drag one sound icon into each of the gray boxes below, then hit the "check" button. You must assign only one sound for each box. You may change your choices as many times as you like before you hit the “check” button. </p>
+
+								<p> If you do not place one sound icon on each box, you will get an alert at the bottom, and you will not be able to move on to the next page until each box contains one sound icon. </p>
+
+								<p> You may use this tutorial to adjust the volume of your headphones. </p>
+
+								<p> You can try now, if you like. Place at least one sound icon in each box and click the "check" button. </p>
+							</div>
+						</div>
+
+						<!--Each icon and dropzone has it's own div in this container.-->
+						<div class="row" id="dragContainer">
+							<div class="col-xs-12">
+								<div class="soundGroup">
+
+									<div id="1" class="sound">
+										<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='1'>
+										<audio class="audioController" id='a1' >
+											<source type="audio/mpeg" src="soundTest/morse_code.mp3" >
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+
+									<div id="2" class="sound">
+										<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='2'>
+										<audio class="audioController" id='a2'>
+											<source type="audio/mpeg" src="soundTest/sputnik-beep.mp3" >
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+
+									<div id="3" class="sound">
+										<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='3'>
+										<audio class="audioController" id='a3'>
+											<source type="audio/mpeg" src="soundTest/morse_code.mp3" >
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+
+									<div id="4" class="sound">
+										<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='4'>
+										<audio class="audioController" id='a4'>
+											<source type="audio/mpeg" src="soundTest/sputnik-beep.mp3" >
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+
+									<div id="5" class="sound">
+										<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='5'>
+										<audio class="audioController" id='a5'>
+											<source type="audio/mpeg" src="soundTest/morse_code.mp3" >
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+
+									<div id="6" class="sound">
+										<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='6'>
+										<audio class="audioController" id='a6'>
+											<source type="audio/mpeg" src="soundTest/morse_code.mp3" >
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+
+									<div id="7" class="sound">
+										<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='7'>
+										<audio class="audioController" id='a7'>
+											<source type="audio/mpeg" src="soundTest/sputnik-beep.mp3" >
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+
+									<div id="8" class="sound">
+										<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='8'>
+										<audio class="audioController" id='a8'>
+											<source type="audio/mpeg" src="soundTest/sputnik-beep.mp3" >
+											Your browser does not support the audio element.
+										</audio>
+									</div>
+
+								</div>
+
+								<div class="iconGroup">
+									<div id="dropZone1" class="dropzone" data-selectid='0'>
+										<p>Drag and drop sample sound here.</p>
+									</div>
+
+									<div id="dropZone2" class="dropzone" data-selectid='0'>
+										<p>Drag and drop sample sound here.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<br>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="alert alert-danger" id="alert" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+								<div class="alert alert-success" id="goodalert" role="alert" style="display:none">Nice! You got one for each icon. Thanks!</div>
+
+								<button type="button" class="btn btn-lg btn-default" data-toggle="modal" onclick="check()">Check</button>
+								<a id="downloadLink" style="display: none"> Save Me!</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-2"></div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+
+		// stuff for draggable elements and drop zones
+		// following this: http://jsfiddle.net/rsmacaalay/fM63u/
+		//----------------------------------------------------------
+		// this is cool, keep for later $( "div[id^='sound']" ).draggable();
+		$(".sound").draggable({
+			start: function(){
+				Position.init($(this));
+			}
+		},
+		{containment: "#dragContainer"} //limits where it can be put/dragged; helps eliminate weird spacing bugs
+		);
+
+
+		//keep track of the position to return when it gets rejected.
+		var Position = (function() {
+			return {
+				init: function(object){
+					object.data("origLoc", $(this).originalPosition={top:0,left:0});
+				},
+				reset: function(object){
+					object.data("origLoc").originalPosition = {top:0,left:0};
+				}
+		};
+		})();
+
+
+		$( ".dropzone" ).droppable({
+			//only accept a drop when there's not already an id
+			//otherwise, try to revert it
+			drop: function(event, ui) {
+				if($(this).data('selectid') === 0){
+					console.log(ui.draggable[0].id + " dropped to " + this.id);
+
+					//syntax for accessing the id of the data/image object:
+					console.log($(this).data('selectid'));
+
+					$(this).data('selectid', ui.draggable[0].id);
+					console.log("new select id is " + $(this).data('selectid'));
+				}
+				else if($(this).data('selectid') === ui.draggable[0].id){
+					console.log("this is the same one. let it be placed again.");
+				}
+				else{
+					$('#'+(ui.draggable[0].id)).animate($('#'+(ui.draggable[0].id)).data().origLoc,"slow");
+				}
+			},
+
+			//dragging over, don't change anything
+			over: function(event, ui){
+				console.log("dragging over something");
+			},
+
+			//this is to track when you pull one of them out of the previous dropzone
+			out: function(event,ui){
+				if($(this).data('selectid') === ui.draggable[0].id){
+					console.log(ui.draggable[0].id + " taken out of "+ this.id);
+					$(this).data('selectid', 0);
+					console.log("updated the id to " + $(this).data('selectid'));
+				}
+				else{
+					console.log("keep the same thing, which is " + $(this).data('selectid'));
+				}
+			}
+		});
+
+
+		// play pretty sounds on icon click
+		//----------------------------------------------------------
+		$(document).ready(function(){
+			$('.soundController').dblclick(function(){
+				//get ID of the audio element we want to play
+				console.log(this);
+				var audioId = $(this).data('audioid');
+				console.log(audioId);
+				$('#a'+audioId).get(0).play(); //is a non-id specific version of this: $('#a1').get(0).play();
+			});
+
+		});
+
+
+
+		// load the modals + update the progress bar
+		//----------------------------------------------------------
+		function check(){
+			var areFilled;
+			areFilled = checkValues();
+
+			//if areFilled === true, move on
+			// else alert + let them continue
+			if(areFilled === false){
+				$('#alert').show();
+			}
+			else{
+				$('#alert').hide();
+				$('#goodalert').show();
+				location.href = "test.html";
+			}
+		}
+
+
+		// Check to make sure all the values are filled for the dropzones
+		//----------------------------------------------------------
+		function checkValues (){
+			var filled = true;
+
+			$('.dropzone').each(function(index, obj){
+				if($(obj).data('selectid') === 0)
+				{
+					console.log($(obj).data('selectid')+" has a 0");
+					filled = false;
+				}
+				else{
+					console.log($(obj).data('selectid'));
+				}
+			});
+
+			return filled;
+		};
+
+
+		// File writing
+		//----------------------------------------------------------
+		function writeFile () {
+			var link = document.getElementById('downloadLink');
+			var name = document.getElementById('id').value;
+			link.href = makeTextFile(document.cookie);
+			link.download = name + ".txt";
+			link.style.display = 'block';
+		};
+
+		textFile = null,
+		makeTextFile = function (text) {
+			var data = new Blob([text], {type: 'text/plain'});
+
+			// If we are replacing a previously generated file we need to
+			// manually revoke the object URL to avoid memory leaks.
+			if (textFile !== null) {
+			  window.URL.revokeObjectURL(textFile);
+			}
+
+			textFile = window.URL.createObjectURL(data);
+
+			return textFile;
+		};
+
+
+
+		// Cookie stuff
+		//----------------------------------------------------------
+		function makeCookie(){
+			var name = "test";
+			document.cookie = "name=" +name;
+
+			var cookie = document.cookie;
+			alert("Cookie: " + "name=" + cookie +',');
+
+			// Get all the cookies pairs in an array
+		   var cookiearray  = cookie.split(';');
+
+		   // Now take key value pair out of this array
+		   for(var i=0; i<cookiearray.length; i++){
+			  var cookieName = cookiearray[i].split('=')[0];
+			  var value = cookiearray[i].split('=')[1];
+			  alert("Key is : " + cookieName + " and Value is : " + value);
+		   }
+
+		}
+
+	</script>
+
+	<!--remember that jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

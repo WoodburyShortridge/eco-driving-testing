@@ -1,0 +1,4445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Woodbury Shortridge - user-centered design for auditory eco-driving interface. Orig. drag/drop testing by Brianna Tomlinson with help/formatting assistance from Joshua
+Lapinski. GT sonification lab.-->
+
+	<!--This is the actual sound card sorting page.-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Sound Card Sorting Web Page Test</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<!--jQuery-->
+	<script src="js/jquery-2.1.3.min.js"></script>
+
+	<!--jQuery-UI-->
+	<script src="js/jquery-ui.js"></script>
+	<link rel="stylesheet" href="css/jquery-ui.css">
+
+	<style type="text/css">
+		div.sound {
+		width: 50px;
+		height: 50px;
+		float: left;
+		padding: 0.5em;
+		margin: 10px 10px 10px 20px;
+		background-color: #AAA;
+		z-index: 300;
+		}
+
+		div.dropzone{
+		width: 250px;
+		height: 275px;
+		padding: 0.5em;
+		float: left;
+		margin: 10px;
+		background-color: #CDCDCD;
+		}
+
+		.soundController{
+		width: 25px;
+		height: 25px;
+		margin: 5px 5px 5px 5px;
+		border: 1px solid #eee;
+		}
+
+		.modal-dialog{
+			width: 768px;
+		}
+
+		.btn-success{
+			width: 200px;
+		}
+
+		body{
+			overflow: hidden;
+		}
+
+	</style>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  	<div class="container">
+
+
+		<!--This part shows up once all the modals have been completed.-->
+		<div class="row">
+			<div class="col-xs-2"></div>
+			<div class="col-xs-8">
+				<button type="button" id="start" class="btn btn-lg btn-default" data-toggle="modal" onclick="makeCookie()">Start</button>
+				<a class="btn btn-success" id="downloadLink" style="display: none"> Save Responses!</a>
+
+				<div class="alert alert-info" id="alertFinish" role="alert" style = "display:none">Remember to save the responses!</div>
+			</div>
+
+			<div class="col-xs-2"></div>
+		</div>
+  	</div>
+
+	<!--Each modal is below. There is one modal for each set of sounds.
+	Create new modals of the same format if you need more than 10 pages.-->
+	<!--Each of the divs with sound icons/sound clips must have unique IDs.-->
+
+	<!--Page 1: ADSR-->
+	<!--the data-keyboard and data-backdrop keep it from closing when clicking outside of the spot-->
+	<div class="modal fade" id="modalId1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving instruction. </p>
+						<p> A driving instruction is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer1">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="1" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='1'>
+									<audio class="audioController" id='a1' >
+										<source type="audio/wav" src="soundTest/adsr/Attack-Fast.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="2" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='2'>
+									<audio class="audioController" id='a2'>
+										<source type="audio/wav" src="soundTest/adsr/Sustain-High.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="3" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='3'>
+									<audio class="audioController" id='a3'>
+										<source type="audio/wav" src="soundTest/adsr/Release-Slow.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="4" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='4'>
+									<audio class="audioController" id='a4'>
+										<source type="audio/wav" src="soundTest/adsr/Attack-Slow.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="5" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='5'>
+									<audio class="audioController" id='a5'>
+										<source type="audio/wav" src="soundTest/adsr/Decay-Fast.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="6" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='6'>
+									<audio class="audioController" id='a6'>
+										<source type="audio/wav" src="soundTest/adsr/Decay-Slow.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="7" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='7'>
+									<audio class="audioController" id='a7'>
+										<source type="audio/wav" src="soundTest/adsr/Sustain-Low.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="8" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='8'>
+									<audio class="audioController" id='a8'>
+										<source type="audio/wav" src="soundTest/adsr/Release-Fast.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone accelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/accelerate.png" class="img-responsive" alt="accelerate icon">
+								</div>
+
+								<div class="dropzone decelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/decelerate.png" class="img-responsive" alt="decelerate icon">
+								</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Page 2: Audio Effects-->
+	<div class="modal fade"  tabindex="-1" id="modalId2" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving instruction. </p>
+						<p> A driving instruction is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer2">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="9" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='9'>
+									<audio class="audioController" id='a9' >
+										<source type="audio/wav" src="soundTest/audioEffects/Reverb.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="10" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='10'>
+									<audio class="audioController" id='a10'>
+										<source type="audio/wav" src="soundTest/audioEffects/DELAY.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="11" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='11'>
+									<audio class="audioController" id='a11'>
+										<source type="audio/wav" src="soundTest/audioEffects/EQ Low.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="12" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='12'>
+									<audio class="audioController" id='a12'>
+										<source type="audio/wav" src="soundTest/audioEffects/EQ High.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="13" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='13'>
+									<audio class="audioController" id='a13'>
+										<source type="audio/wav" src="soundTest/audioEffects/LFO.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="14" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='14'>
+									<audio class="audioController" id='a14'>
+										<source type="audio/wav" src="soundTest/audioEffects/Distort.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone accelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/accelerate.png" class="img-responsive" alt="accelerate icon">
+								</div>
+
+								<div class="dropzone decelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/decelerate.png" class="img-responsive" alt="decelerate icon">
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 3: Instruments-->
+	<div class="modal fade"  tabindex="-1" id="modalId3" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving instruction. </p>
+						<p> A driving instruction is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer3">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="15" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='15'>
+									<audio class="audioController" id='a15' >
+										<source type="audio/wav" src="soundTest/instruments/Wind.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="16" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='16'>
+									<audio class="audioController" id='a16'>
+										<source type="audio/wav" src="soundTest/instruments/Brass.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="17" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='17'>
+									<audio class="audioController" id='a17'>
+										<source type="audio/wav" src="soundTest/instruments/Bass.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="18" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='18'>
+									<audio class="audioController" id='a18'>
+										<source type="audio/wav" src="soundTest/instruments/Xylophone.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="19" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='19'>
+									<audio class="audioController" id='a19'>
+										<source type="audio/wav" src="soundTest/instruments/Piano.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="20" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='20'>
+									<audio class="audioController" id='a20'>
+										<source type="audio/wav" src="soundTest/instruments/Harp-Guitar.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="21" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='21'>
+									<audio class="audioController" id='a21'>
+										<source type="audio/wav" src="soundTest/instruments/Marimba.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="22" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='22'>
+									<audio class="audioController" id='a22'>
+										<source type="audio/wav" src="soundTest/instruments/String.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone accelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/accelerate.png" class="img-responsive" alt="accelerate icon">
+								</div>
+
+								<div class="dropzone decelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/decelerate.png" class="img-responsive" alt="decelerate icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 4: Triads-->
+	<div class="modal fade"  tabindex="-1" id="modalId4" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving instruction. </p>
+						<p> A driving instruction is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer4">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="23" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='23'>
+									<audio class="audioController" id='a23' >
+										<source type="audio/wav" src="soundTest/triads/Major-Down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="24" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='24'>
+									<audio class="audioController" id='a24'>
+										<source type="audio/wav" src="soundTest/triads/Dim-Up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="25" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='25'>
+									<audio class="audioController" id='a25'>
+										<source type="audio/wav" src="soundTest/triads/Dim-Down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="26" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='26'>
+									<audio class="audioController" id='a26'>
+										<source type="audio/wav" src="soundTest/triads/Minor-Up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="27" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='27'>
+									<audio class="audioController" id='a27'>
+										<source type="audio/wav" src="soundTest/triads/Major-Up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="28" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='28'>
+									<audio class="audioController" id='a28'>
+										<source type="audio/wav" src="soundTest/triads/Aug-Up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="29" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='29'>
+									<audio class="audioController" id='a29'>
+										<source type="audio/wav" src="soundTest/triads/Minor-Down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="30" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='30'>
+									<audio class="audioController" id='a30'>
+										<source type="audio/wav" src="soundTest/triads/Aug-Down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone accelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/accelerate.png" class="img-responsive" alt="accelerate icon">
+								</div>
+
+								<div class="dropzone decelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/decelerate.png" class="img-responsive" alt="decelerate icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 5: Icons-->
+	<div class="modal fade"  tabindex="-1" id="modalId5" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving instruction. </p>
+						<p> A driving instruction is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer5">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="31" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='31'>
+									<audio class="audioController" id='a31' >
+										<source type="audio/wav" src="soundTest/Icon/accelerate.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="32" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='32'>
+									<audio class="audioController" id='a32'>
+										<source type="audio/wav" src="soundTest/Icon/decelerate.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone accelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/accelerate.png" class="img-responsive" alt="accelerate icon">
+								</div>
+
+								<div class="dropzone decelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/decelerate.png" class="img-responsive" alt="decelerate icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 6: Speech-->
+	<div class="modal fade"  tabindex="-1" id="modalId6" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving instruction. </p>
+						<p> A driving instruction is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer6">
+						<div class="row">
+							<div class="col-xs-12">
+
+								<div id="33" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='33'>
+									<audio class="audioController" id='a33'>
+										<source type="audio/wav" src="soundTest/Speech/decelerate-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="34" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='34'>
+									<audio class="audioController" id='a34' >
+										<source type="audio/wav" src="soundTest/Speech/accelerate-crystal.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="35" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='35'>
+									<audio class="audioController" id='a35'>
+										<source type="audio/wav" src="soundTest/Speech/accelerate-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="36" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='36'>
+									<audio class="audioController" id='a36'>
+										<source type="audio/wav" src="soundTest/Speech/decelerate-Lauren.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone accelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/accelerate.png" class="img-responsive" alt="accelerate icon">
+								</div>
+
+								<div class="dropzone decelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/decelerate.png" class="img-responsive" alt="decelerate icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Page 7: Scales-->
+	<div class="modal fade"  tabindex="-1" id="modalId7" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving instruction. </p>
+						<p> A driving instruction is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer7">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="37" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='37'>
+									<audio class="audioController" id='a37' >
+										<source type="audio/wav" src="soundTest/scales/min-harm-down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="39" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='39'>
+									<audio class="audioController" id='a39'>
+										<source type="audio/wav" src="soundTest/scales/min-harm-up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="40" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='40'>
+									<audio class="audioController" id='a40'>
+										<source type="audio/wav" src="soundTest/scales/blues-up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="41" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='41'>
+									<audio class="audioController" id='a41'>
+										<source type="audio/wav" src="soundTest/scales/maj-pent-up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="42" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='42'>
+									<audio class="audioController" id='a42'>
+										<source type="audio/wav" src="soundTest/scales/maj-pent-down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="44" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='44'>
+									<audio class="audioController" id='a44'>
+										<source type="audio/wav" src="soundTest/scales/blues-down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone accelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/accelerate.png" class="img-responsive" alt="accelerate icon">
+								</div>
+
+								<div class="dropzone decelerate" data-selectid='0'>
+									<p></p>
+									<img src="images/decelerate.png" class="img-responsive" alt="decelerate icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Page 8: Instructions for Part 2-->
+	<div class="modal fade"  tabindex="-1" id="modalId8" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions Survey </h2>
+					<div class="panel-body">
+						<p> A <b> driving instruction </b> is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="panel-body" id="modalContainer8">
+								<p> In the section you just completed you picked sounds that best represent particular driving instructions. We now would like you to complete a short survey about the three different types of sounds you heard (music, icon, and voice). Please listen to the example of each type of sound, and then click the hyperlink to fill out the survey. <b>Once you have completed the survey</b>, return to this page and click “next” to begin the next section. </p>
+
+								<p><b>"Music" sound</b>.</p>
+								<audio controls>
+									<source src="soundTest/earcon/accelerate.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p> </p>
+								<p><b>"Icon" sound</b>.</p>
+								<audio controls>
+									<source src="soundTest/Icon/accelerate.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p> </p>
+								<p><b>"Voice" sound</b>.</p>
+								<audio controls>
+									<source src="soundTest/Speech/accelerate-crystal.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p> </p>
+								<p> <a href="https://www.surveymonkey.com/r/Q86596J" target="_blank" ><b>Click here to take the survey</b></a>  </p>
+
+								<div class="has-success">
+									<div class="checkbox">
+										<label>
+										<input type="checkbox" id="checkboxSuccess" value="option1">
+										Check if you have completed the above survey.
+										</label>
+									</div>
+								</div>
+								<div class="alert alert-danger" role="alert" style = "display:none">You must complete the survey before continuing.</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 9: Register-->
+	<div class="modal fade"  tabindex="-1" id="modalId9" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving instruction. </p>
+						<p> A driving instruction is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer9" >
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="45" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='45'>
+									<audio class="audioController" id='a45' >
+										<source type="audio/wav" src="soundTest/Register/C2DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="46" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='46'>
+									<audio class="audioController" id='a46'>
+										<source type="audio/wav" src="soundTest/Register/C4UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="47" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='47'>
+									<audio class="audioController" id='a47'>
+										<source type="audio/wav" src="soundTest/Register/C2UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="48" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='48'>
+									<audio class="audioController" id='a48'>
+										<source type="audio/wav" src="soundTest/Register/C3DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="49" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='49'>
+									<audio class="audioController" id='a49'>
+										<source type="audio/wav" src="soundTest/Register/C4DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="50" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='50'>
+									<audio class="audioController" id='a50'>
+										<source type="audio/wav" src="soundTest/Register/C3UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone accelerate+" data-selectid='0'>
+									<img src="images/accelerate+.png" class="img-responsive" alt="accelerate+ icon">
+								</div>
+
+								<div class="dropzone accelerate-" data-selectid='0'>
+									<img src="images/accelerate-.png" class="img-responsive" alt="accelerate- icon">
+								</div>
+
+								<div class="dropzone decelerate-" data-selectid='0'>
+									<img src="images/decelerate-.png" class="img-responsive" alt="decelerate- icon">
+								</div>
+
+								<div class="dropzone decelerate+" data-selectid='0'>
+									<img src="images/decelerate+.png" class="img-responsive" alt="decelerate+ icon">
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 10: Range-->
+	<div class="modal fade"  tabindex="-1" id="modalId10" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving instruction. </p>
+						<p> A driving instruction is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer10">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="51" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='51'>
+									<audio class="audioController" id='a51' >
+										<source type="audio/wav" src="soundTest/Range/0-5UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="52" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='52'>
+									<audio class="audioController" id='a52'>
+										<source type="audio/wav" src="soundTest/Range/1-4UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="53" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='53'>
+									<audio class="audioController" id='a53'>
+										<source type="audio/wav" src="soundTest/Range/2-3UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="54" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='54'>
+									<audio class="audioController" id='a54'>
+										<source type="audio/wav" src="soundTest/Range/5-0DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="55" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='55'>
+									<audio class="audioController" id='a55'>
+										<source type="audio/wav" src="soundTest/Range/4-1DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="56" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='56'>
+									<audio class="audioController" id='a56'>
+										<source type="audio/wav" src="soundTest/Range/3-2DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone accelerate+" data-selectid='0'>
+									<img src="images/accelerate+.png" class="img-responsive" alt="accelerate+ icon">
+								</div>
+
+								<div class="dropzone accelerate-" data-selectid='0'>
+									<img src="images/accelerate-.png" class="img-responsive" alt="accelerate- icon">
+								</div>
+
+								<div class="dropzone decelerate-" data-selectid='0'>
+									<img src="images/decelerate-.png" class="img-responsive" alt="decelerate- icon">
+								</div>
+
+								<div class="dropzone decelerate+" data-selectid='0'>
+									<img src="images/decelerate+.png" class="img-responsive" alt="decelerate+ icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 11: Rhythm-->
+	<div class="modal fade"  tabindex="-1" id="modalId11" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving instruction. </p>
+						<p> A driving instruction is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer11">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="57" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='57'>
+									<audio class="audioController" id='a57' >
+										<source type="audio/wav" src="soundTest/Rhythm/slow.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="58" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='58'>
+									<audio class="audioController" id='a58'>
+										<source type="audio/wav" src="soundTest/Rhythm/increase.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="59" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='59'>
+									<audio class="audioController" id='a59'>
+										<source type="audio/wav" src="soundTest/Rhythm/fast.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="60" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='60'>
+									<audio class="audioController" id='a60'>
+										<source type="audio/wav" src="soundTest/Rhythm/decrease.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone accelerate+" data-selectid='0'>
+									<img src="images/accelerate+.png" class="img-responsive" alt="accelerate+ icon">
+								</div>
+
+								<div class="dropzone accelerate-" data-selectid='0'>
+									<img src="images/accelerate-.png" class="img-responsive" alt="accelerate- icon">
+								</div>
+
+								<div class="dropzone decelerate-" data-selectid='0'>
+									<img src="images/decelerate-.png" class="img-responsive" alt="decelerate- icon">
+								</div>
+
+								<div class="dropzone decelerate+" data-selectid='0'>
+									<img src="images/decelerate+.png" class="img-responsive" alt="decelerate+ icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 12: Icon-->
+	<div class="modal fade"  tabindex="-1" id="modalId12" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving instruction. </p>
+						<p> A driving instruction is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer12">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="61" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='61'>
+									<audio class="audioController" id='a61' >
+										<source type="audio/wav" src="soundTest/Icon/accelerate.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="62" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='62'>
+									<audio class="audioController" id='a62'>
+										<source type="audio/wav" src="soundTest/Icon/decelerate2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="63" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='63'>
+									<audio class="audioController" id='a63'>
+										<source type="audio/wav" src="soundTest/Icon/accelerate2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="64" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='64'>
+									<audio class="audioController" id='a64'>
+										<source type="audio/wav" src="soundTest/Icon/decelerate.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone accelerate+" data-selectid='0'>
+									<img src="images/accelerate+.png" class="img-responsive" alt="accelerate+ icon">
+								</div>
+
+								<div class="dropzone accelerate-" data-selectid='0'>
+									<img src="images/accelerate-.png" class="img-responsive" alt="accelerate- icon">
+								</div>
+
+								<div class="dropzone decelerate-" data-selectid='0'>
+									<img src="images/decelerate-.png" class="img-responsive" alt="decelerate- icon">
+								</div>
+
+								<div class="dropzone decelerate+" data-selectid='0'>
+									<img src="images/decelerate+.png" class="img-responsive" alt="decelerate+ icon">
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 13: Speech-->
+	<div class="modal fade"  tabindex="-1" id="modalId13" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving instruction. </p>
+						<p> A driving instruction is a direction or order that advises the driver how to change their driving behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer13">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="65" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='65'>
+									<audio class="audioController" id='a65' >
+										<source type="audio/wav" src="soundTest/Speech/accelerate-crystal.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="66" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='66'>
+									<audio class="audioController" id='a66'>
+										<source type="audio/wav" src="soundTest/Speech/decelerate-Lauren.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="67" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='67'>
+									<audio class="audioController" id='a67'>
+										<source type="audio/wav" src="soundTest/Speech/accelerate-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="68" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='68'>
+									<audio class="audioController" id='a68'>
+										<source type="audio/wav" src="soundTest/Speech/accelerate-crystal2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="69" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='69'>
+									<audio class="audioController" id='a69'>
+										<source type="audio/wav" src="soundTest/Speech/decelerate-mike2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="70" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='70'>
+									<audio class="audioController" id='a70'>
+										<source type="audio/wav" src="soundTest/Speech/decelerate-Lauren2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="71" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='71'>
+									<audio class="audioController" id='a71'>
+										<source type="audio/wav" src="soundTest/Speech/decelerate-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="72" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='72'>
+									<audio class="audioController" id='a72'>
+										<source type="audio/wav" src="soundTest/Speech/accelerate-mike2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone accelerate+" data-selectid='0'>
+									<img src="images/accelerate+.png" class="img-responsive" alt="accelerate+ icon">
+								</div>
+
+								<div class="dropzone accelerate-" data-selectid='0'>
+									<img src="images/accelerate-.png" class="img-responsive" alt="accelerate- icon">
+								</div>
+
+								<div class="dropzone decelerate-" data-selectid='0'>
+									<img src="images/decelerate-.png" class="img-responsive" alt="decelerate- icon">
+								</div>
+
+								<div class="dropzone decelerate+" data-selectid='0'>
+									<img src="images/decelerate+.png" class="img-responsive" alt="decelerate+ icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!--Page 14: Instructions for Part 3-->
+	<div class="modal fade"  tabindex="-1" id="modalId14" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Instructions: Driving Status </h2>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+
+						<div class="col-xs-12">
+							<div class="panel-body" id="modalContainer14">
+								<p> For the next series of pages, you will listen to a set of sounds and choose which one you think best represents each current driving status. A <b>driving status</b> is information about a driver’s current behavior. For example, a speedometer informs the driver of his or her current speed, therefore the speedometer displays driving status. </p>
+
+								<p> To listen to each of the sounds, double click on the sound icon. Once the sound begins playing, it will continue until it's over. There is no way to stop the sound early. </p>
+
+								<p> Your goal/task is to assign each driving status a sound. You can think of this as the sound that best represents that driving status in your opinion. You may pick the sound because it reminds you of the actual driving event or for some other reason. There is no right or wrong answer, just choose which sound you think best fits each driving status. </p>
+
+								<p>  Click and drag one sound icon into each of the gray boxes below, then hit the "check" button. You must assign only one sound for each box. You may change your choices as many times as you like before you hit the “check” button. </p>
+
+								<p> If you do not place one sound icon on each box, you will get an alert at the bottom, and you will not be able to move on to the next page until each box contains one sound icon. </p>
+
+								<p> There is a progress bar at the bottom of each page, and it will tell you how many pages you have left. </p>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<!--Page 15: ADSR-->
+	<!--the data-keyboard and data-backdrop keep it from closing when clicking outside of the spot-->
+	<div class="modal fade" id="modalId15" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Driving Status </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving status. </p>
+						<p> A driving status is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer15">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="1" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='1'>
+									<audio class="audioController" id='a1' >
+										<source type="audio/wav" src="soundTest/adsr/Attack-Fast.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="2" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='2'>
+									<audio class="audioController" id='a2'>
+										<source type="audio/wav" src="soundTest/adsr/Sustain-High.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="3" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='3'>
+									<audio class="audioController" id='a3'>
+										<source type="audio/wav" src="soundTest/adsr/Release-Slow.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="4" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='4'>
+									<audio class="audioController" id='a4'>
+										<source type="audio/wav" src="soundTest/adsr/Attack-Slow.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="5" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='5'>
+									<audio class="audioController" id='a5'>
+										<source type="audio/wav" src="soundTest/adsr/Decay-Fast.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="6" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='6'>
+									<audio class="audioController" id='a6'>
+										<source type="audio/wav" src="soundTest/adsr/Decay-Slow.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="7" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='7'>
+									<audio class="audioController" id='a7'>
+										<source type="audio/wav" src="soundTest/adsr/Sustain-Low.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="8" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='8'>
+									<audio class="audioController" id='a8'>
+										<source type="audio/wav" src="soundTest/adsr/Release-Fast.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone insufficient" data-selectid='0'>
+									<p></p>
+									<img src="images/insufficient.png" class="img-responsive" alt="insufficient icon">
+								</div>
+
+								<div class="dropzone excessive" data-selectid='0'>
+									<p></p>
+									<img src="images/excessive.png" class="img-responsive" alt="excessive icon">
+								</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Page 16: Audio Effects-->
+	<div class="modal fade"  tabindex="-1" id="modalId16" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Driving Status </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving status. </p>
+						<p> A driving status is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer16">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="9" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='9'>
+									<audio class="audioController" id='a9' >
+										<source type="audio/wav" src="soundTest/audioEffects/Reverb.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="10" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='10'>
+									<audio class="audioController" id='a10'>
+										<source type="audio/wav" src="soundTest/audioEffects/DELAY.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="11" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='11'>
+									<audio class="audioController" id='a11'>
+										<source type="audio/wav" src="soundTest/audioEffects/EQ Low.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="12" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='12'>
+									<audio class="audioController" id='a12'>
+										<source type="audio/wav" src="soundTest/audioEffects/EQ High.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="13" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='13'>
+									<audio class="audioController" id='a13'>
+										<source type="audio/wav" src="soundTest/audioEffects/LFO.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="14" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='14'>
+									<audio class="audioController" id='a14'>
+										<source type="audio/wav" src="soundTest/audioEffects/Distort.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone insufficient" data-selectid='0'>
+									<p></p>
+									<img src="images/insufficient.png" class="img-responsive" alt="insufficient icon">
+								</div>
+
+								<div class="dropzone excessive" data-selectid='0'>
+									<p></p>
+									<img src="images/excessive.png" class="img-responsive" alt="excessive icon">
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 17: Instruments-->
+	<div class="modal fade"  tabindex="-1" id="modalId17" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Driving Status </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving status. </p>
+						<p> A driving status is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer17">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="15" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='15'>
+									<audio class="audioController" id='a15' >
+										<source type="audio/wav" src="soundTest/instruments/Wind.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="16" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='16'>
+									<audio class="audioController" id='a16'>
+										<source type="audio/wav" src="soundTest/instruments/Brass.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="17" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='17'>
+									<audio class="audioController" id='a17'>
+										<source type="audio/wav" src="soundTest/instruments/Bass.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="18" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='18'>
+									<audio class="audioController" id='a18'>
+										<source type="audio/wav" src="soundTest/instruments/Xylophone.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="19" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='19'>
+									<audio class="audioController" id='a19'>
+										<source type="audio/wav" src="soundTest/instruments/Piano.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="20" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='20'>
+									<audio class="audioController" id='a20'>
+										<source type="audio/wav" src="soundTest/instruments/Harp-Guitar.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="21" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='21'>
+									<audio class="audioController" id='a21'>
+										<source type="audio/wav" src="soundTest/instruments/Marimba.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="22" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='22'>
+									<audio class="audioController" id='a22'>
+										<source type="audio/wav" src="soundTest/instruments/String.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone insufficient" data-selectid='0'>
+									<p></p>
+									<img src="images/insufficient.png" class="img-responsive" alt="insufficient icon">
+								</div>
+
+								<div class="dropzone excessive" data-selectid='0'>
+									<p></p>
+									<img src="images/excessive.png" class="img-responsive" alt="excessive icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 18: Triads-->
+	<div class="modal fade"  tabindex="-1" id="modalId18" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Driving Status </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving status. </p>
+						<p> A driving status is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer18">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="23" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='23'>
+									<audio class="audioController" id='a23' >
+										<source type="audio/wav" src="soundTest/triads/Major-Down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="24" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='24'>
+									<audio class="audioController" id='a24'>
+										<source type="audio/wav" src="soundTest/triads/Dim-Up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="25" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='25'>
+									<audio class="audioController" id='a25'>
+										<source type="audio/wav" src="soundTest/triads/Dim-Down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="26" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='26'>
+									<audio class="audioController" id='a26'>
+										<source type="audio/wav" src="soundTest/triads/Minor-Up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="27" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='27'>
+									<audio class="audioController" id='a27'>
+										<source type="audio/wav" src="soundTest/triads/Major-Up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="28" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='28'>
+									<audio class="audioController" id='a28'>
+										<source type="audio/wav" src="soundTest/triads/Aug-Up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="29" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='29'>
+									<audio class="audioController" id='a29'>
+										<source type="audio/wav" src="soundTest/triads/Minor-Down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="30" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='30'>
+									<audio class="audioController" id='a30'>
+										<source type="audio/wav" src="soundTest/triads/Aug-Down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone insufficient" data-selectid='0'>
+									<p></p>
+									<img src="images/insufficient.png" class="img-responsive" alt="insufficient icon">
+								</div>
+
+								<div class="dropzone excessive" data-selectid='0'>
+									<p></p>
+									<img src="images/excessive.png" class="img-responsive" alt="excessive icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 19: Icons-->
+	<div class="modal fade"  tabindex="-1" id="modalId19" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Driving Status </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving status. </p>
+						<p> A driving status is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer19">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="31" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='31'>
+									<audio class="audioController" id='a31' >
+										<source type="audio/wav" src="soundTest/Icon/accelerate.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="32" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='32'>
+									<audio class="audioController" id='a32'>
+										<source type="audio/wav" src="soundTest/Icon/decelerate.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone insufficient" data-selectid='0'>
+									<p></p>
+									<img src="images/insufficient.png" class="img-responsive" alt="insufficient icon">
+								</div>
+
+								<div class="dropzone excessive" data-selectid='0'>
+									<p></p>
+									<img src="images/excessive.png" class="img-responsive" alt="excessive icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 20: Speech-->
+	<div class="modal fade"  tabindex="-1" id="modalId20" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Driving Status </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving status. </p>
+						<p> A driving status is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer20">
+						<div class="row">
+							<div class="col-xs-12">
+
+								<div id="73" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='73'>
+									<audio class="audioController" id='a73'>
+										<source type="audio/wav" src="soundTest/Speech/excessive-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="74" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='74'>
+									<audio class="audioController" id='a74' >
+										<source type="audio/wav" src="soundTest/Speech/insufficient-crystal.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="75" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='75'>
+									<audio class="audioController" id='a75'>
+										<source type="audio/wav" src="soundTest/Speech/insufficient-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="76" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='76'>
+									<audio class="audioController" id='a76'>
+										<source type="audio/wav" src="soundTest/Speech/excessive-crystal.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone insufficient" data-selectid='0'>
+									<p></p>
+									<img src="images/insufficient.png" class="img-responsive" alt="insufficient icon">
+								</div>
+
+								<div class="dropzone excessive" data-selectid='0'>
+									<p></p>
+									<img src="images/excessive.png" class="img-responsive" alt="excessive icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Page 21: Scales-->
+	<div class="modal fade"  tabindex="-1" id="modalId21" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Driving Status </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving status. </p>
+						<p> A driving status is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer21">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="37" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='37'>
+									<audio class="audioController" id='a37' >
+										<source type="audio/wav" src="soundTest/scales/min-harm-down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="39" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='39'>
+									<audio class="audioController" id='a39'>
+										<source type="audio/wav" src="soundTest/scales/min-harm-up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="40" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='40'>
+									<audio class="audioController" id='a40'>
+										<source type="audio/wav" src="soundTest/scales/blues-up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="41" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='41'>
+									<audio class="audioController" id='a41'>
+										<source type="audio/wav" src="soundTest/scales/maj-pent-up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="42" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='42'>
+									<audio class="audioController" id='a42'>
+										<source type="audio/wav" src="soundTest/scales/maj-pent-down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="44" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='44'>
+									<audio class="audioController" id='a44'>
+										<source type="audio/wav" src="soundTest/scales/blues-down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone insufficient" data-selectid='0'>
+									<p></p>
+									<img src="images/insufficient.png" class="img-responsive" alt="insufficient icon">
+								</div>
+
+								<div class="dropzone excessive" data-selectid='0'>
+									<p></p>
+									<img src="images/excessive.png" class="img-responsive" alt="excessive icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Page 22: Instructions for Part 2-->
+	<div class="modal fade"  tabindex="-1" id="modalId22" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Status Survey </h2>
+					<div class="panel-body">
+					<p> A <b> driving status </b> is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="panel-body" id="modalContainer22">
+								<p> In the section you just completed you picked sounds that best represent particular driving status. We now would like you to complete a short survey about the three different types of sounds you heard (music, icon, and voice). Please listen to the example of each type of sound, and then click the hyperlink to fill out the survey. <b>Once you have completed the survey</b>, return to this page and click “next” to begin the next section. </p>
+
+								<p><b>"Music" sound</b>.</p>
+								<audio controls>
+									<source src="soundTest/earcon/insufficient.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p> </p>
+								<p><b>"Icon" sound</b>.</p>
+								<audio controls>
+									<source src="soundTest/Icon/decelerate.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p> </p>
+								<p><b>"Voice" sound</b>.</p>
+								<audio controls>
+									<source src="soundTest/Speech/insufficient-crystal.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p> </p>
+								<p> <a href="https://www.surveymonkey.com/r/QGN26QP" target="_blank" ><b>Click here to take the survey</b></a>  </p>
+
+								<div class="has-success">
+									<div class="checkbox">
+										<label>
+										<input type="checkbox" id="checkboxSuccess" value="option1">
+										Check if you have completed the above survey.
+										</label>
+									</div>
+								</div>
+								<div class="alert alert-danger" role="alert" style = "display:none">You must complete the survey before continuing.</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 23: Register-->
+	<div class="modal fade"  tabindex="-1" id="modalId23" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Driving Status </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving status. </p>
+						<p> A driving status is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer23" >
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="45" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='45'>
+									<audio class="audioController" id='a45' >
+										<source type="audio/wav" src="soundTest/Register/C2DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="46" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='46'>
+									<audio class="audioController" id='a46'>
+										<source type="audio/wav" src="soundTest/Register/C4UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="47" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='47'>
+									<audio class="audioController" id='a47'>
+										<source type="audio/wav" src="soundTest/Register/C2UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="48" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='48'>
+									<audio class="audioController" id='a48'>
+										<source type="audio/wav" src="soundTest/Register/C3DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="49" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='49'>
+									<audio class="audioController" id='a49'>
+										<source type="audio/wav" src="soundTest/Register/C4DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="50" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='50'>
+									<audio class="audioController" id='a50'>
+										<source type="audio/wav" src="soundTest/Register/C3UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone insufficient+" data-selectid='0'>
+									<img src="images/insufficient+.png" class="img-responsive" alt="insufficient+ icon">
+								</div>
+
+								<div class="dropzone insufficient-" data-selectid='0'>
+									<img src="images/insufficient-.png" class="img-responsive" alt="insufficient- icon">
+								</div>
+
+								<div class="dropzone excessive-" data-selectid='0'>
+									<img src="images/excessive-.png" class="img-responsive" alt="excessive- icon">
+								</div>
+
+								<div class="dropzone excessive+" data-selectid='0'>
+									<img src="images/excessive+.png" class="img-responsive" alt="excessive+ icon">
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 24: Range-->
+	<div class="modal fade"  tabindex="-1" id="modalId24" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Driving Status </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving status. </p>
+						<p> A driving status is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer24">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="51" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='51'>
+									<audio class="audioController" id='a51' >
+										<source type="audio/wav" src="soundTest/Range/0-5UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="52" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='52'>
+									<audio class="audioController" id='a52'>
+										<source type="audio/wav" src="soundTest/Range/1-4UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="53" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='53'>
+									<audio class="audioController" id='a53'>
+										<source type="audio/wav" src="soundTest/Range/2-3UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="54" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='54'>
+									<audio class="audioController" id='a54'>
+										<source type="audio/wav" src="soundTest/Range/5-0DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="55" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='55'>
+									<audio class="audioController" id='a55'>
+										<source type="audio/wav" src="soundTest/Range/4-1DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="56" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='56'>
+									<audio class="audioController" id='a56'>
+										<source type="audio/wav" src="soundTest/Range/3-2DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone insufficient+" data-selectid='0'>
+									<img src="images/insufficient+.png" class="img-responsive" alt="insufficient+ icon">
+								</div>
+
+								<div class="dropzone insufficient-" data-selectid='0'>
+									<img src="images/insufficient-.png" class="img-responsive" alt="insufficient- icon">
+								</div>
+
+								<div class="dropzone excessive-" data-selectid='0'>
+									<img src="images/excessive-.png" class="img-responsive" alt="excessive- icon">
+								</div>
+
+								<div class="dropzone excessive+" data-selectid='0'>
+									<img src="images/excessive+.png" class="img-responsive" alt="excessive+ icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 25: Rhythm-->
+	<div class="modal fade"  tabindex="-1" id="modalId25" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Driving Status </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving status. </p>
+						<p> A driving status is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer25">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="57" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='57'>
+									<audio class="audioController" id='a57' >
+										<source type="audio/wav" src="soundTest/Rhythm/slow.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="58" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='58'>
+									<audio class="audioController" id='a58'>
+										<source type="audio/wav" src="soundTest/Rhythm/increase.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="59" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='59'>
+									<audio class="audioController" id='a59'>
+										<source type="audio/wav" src="soundTest/Rhythm/fast.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="60" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='60'>
+									<audio class="audioController" id='a60'>
+										<source type="audio/wav" src="soundTest/Rhythm/decrease.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone insufficient+" data-selectid='0'>
+									<img src="images/insufficient+.png" class="img-responsive" alt="insufficient+ icon">
+								</div>
+
+								<div class="dropzone insufficient-" data-selectid='0'>
+									<img src="images/insufficient-.png" class="img-responsive" alt="insufficient- icon">
+								</div>
+
+								<div class="dropzone excessive-" data-selectid='0'>
+									<img src="images/excessive-.png" class="img-responsive" alt="excessive- icon">
+								</div>
+
+								<div class="dropzone excessive+" data-selectid='0'>
+									<img src="images/excessive+.png" class="img-responsive" alt="excessive+ icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 26: Icon-->
+	<div class="modal fade"  tabindex="-1" id="modalId26" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Driving Status</h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving status. </p>
+						<p> A driving status is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer26">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="61" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='61'>
+									<audio class="audioController" id='a61' >
+										<source type="audio/wav" src="soundTest/Icon/accelerate.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="62" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='62'>
+									<audio class="audioController" id='a62'>
+										<source type="audio/wav" src="soundTest/Icon/decelerate2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="63" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='63'>
+									<audio class="audioController" id='a63'>
+										<source type="audio/wav" src="soundTest/Icon/accelerate2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="64" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='64'>
+									<audio class="audioController" id='a64'>
+										<source type="audio/wav" src="soundTest/Icon/decelerate.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone insufficient+" data-selectid='0'>
+									<img src="images/insufficient+.png" class="img-responsive" alt="insufficient+ icon">
+								</div>
+
+								<div class="dropzone insufficient-" data-selectid='0'>
+									<img src="images/insufficient-.png" class="img-responsive" alt="insufficient- icon">
+								</div>
+
+								<div class="dropzone excessive-" data-selectid='0'>
+									<img src="images/excessive-.png" class="img-responsive" alt="excessive- icon">
+								</div>
+
+								<div class="dropzone excessive+" data-selectid='0'>
+									<img src="images/excessive+.png" class="img-responsive" alt="excessive+ icon">
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 27: Speech-->
+	<div class="modal fade"  tabindex="-1" id="modalId27" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Driving Status </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each driving status. </p>
+						<p> A driving status is information about a driver’s current behavior. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer27">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="74" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='74'>
+									<audio class="audioController" id='a74' >
+										<source type="audio/wav" src="soundTest/Speech/insufficient-crystal.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="76" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='76'>
+									<audio class="audioController" id='a76'>
+										<source type="audio/wav" src="soundTest/Speech/excessive-crystal.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="75" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='75'>
+									<audio class="audioController" id='a75'>
+										<source type="audio/wav" src="soundTest/Speech/insufficient-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="77" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='77'>
+									<audio class="audioController" id='a77'>
+										<source type="audio/wav" src="soundTest/Speech/insufficient-crystal2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="78" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='78'>
+									<audio class="audioController" id='a78'>
+										<source type="audio/wav" src="soundTest/Speech/excessive-mike2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="79" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='79'>
+									<audio class="audioController" id='a79'>
+										<source type="audio/wav" src="soundTest/Speech/excessive-crystal2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="73" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='73'>
+									<audio class="audioController" id='a73'>
+										<source type="audio/wav" src="soundTest/Speech/excessive-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="80" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='80'>
+									<audio class="audioController" id='a80'>
+										<source type="audio/wav" src="soundTest/Speech/insufficient-mike2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone insufficient+" data-selectid='0'>
+									<img src="images/insufficient+.png" class="img-responsive" alt="insufficient+ icon">
+								</div>
+
+								<div class="dropzone insufficient-" data-selectid='0'>
+									<img src="images/insufficient-.png" class="img-responsive" alt="insufficient- icon">
+								</div>
+
+								<div class="dropzone excessive-" data-selectid='0'>
+									<img src="images/excessive-.png" class="img-responsive" alt="excessive- icon">
+								</div>
+
+								<div class="dropzone excessive+" data-selectid='0'>
+									<img src="images/excessive+.png" class="img-responsive" alt="excessive+ icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 28: Instructions for Part 3-->
+	<div class="modal fade"  tabindex="-1" id="modalId28" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Instructions: Fuel Economy </h2>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+
+						<div class="col-xs-12">
+							<div class="panel-body" id="modalContainer28">
+								<p> For the next series of pages, you will listen to a set of sounds and choose which one you think best represents each level of fuel economy. <b>Fuel economy</b> is information about a driver’s average gas mileage. In other words, fuel economy is an average efficiency measured by the relationship between the distance traveled and the amount of fuel consumed by the vehicle. </p>
+
+								<p> To listen to each of the sounds, double click on the sound icon. Once the sound begins playing, it will continue until it's over. There is no way to stop the sound early. </p>
+
+								<p> Your goal/task is to assign each level of fuel economy a sound. You can think of this as the sound that best represents that level of efficiency in your opinion. You may pick the sound because it reminds you of actual fuel economy or for some other reason. There is no right or wrong answer, just choose which sound you think best fits each level of fuel economy. </p>
+
+								<p> Click and drag one sound icon into each of the gray boxes below, then hit the "check" button. You must assign only one sound for each box. You may change your choices as many times as you like before you hit the “check” button. </p>
+
+								<p> If you do not place one sound icon on each box, you will get an alert at the bottom, and you will not be able to move on to the next page until each box contains one sound icon. </p>
+
+								<p> There is a progress bar at the bottom of each page, and it will tell you how many pages you have left. </p>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 29: ADSR-->
+	<div class="modal fade" id="modalId29" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Fuel Economy </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each level of fuel economy. </p>
+						<p> Fuel economy is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer29">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="1" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='1'>
+									<audio class="audioController" id='a1' >
+										<source type="audio/wav" src="soundTest/adsr/Attack-Fast.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="2" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='2'>
+									<audio class="audioController" id='a2'>
+										<source type="audio/wav" src="soundTest/adsr/Sustain-High.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="3" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='3'>
+									<audio class="audioController" id='a3'>
+										<source type="audio/wav" src="soundTest/adsr/Release-Slow.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="4" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='4'>
+									<audio class="audioController" id='a4'>
+										<source type="audio/wav" src="soundTest/adsr/Attack-Slow.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="5" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='5'>
+									<audio class="audioController" id='a5'>
+										<source type="audio/wav" src="soundTest/adsr/Decay-Fast.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="6" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='6'>
+									<audio class="audioController" id='a6'>
+										<source type="audio/wav" src="soundTest/adsr/Decay-Slow.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="7" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='7'>
+									<audio class="audioController" id='a7'>
+										<source type="audio/wav" src="soundTest/adsr/Sustain-Low.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="8" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='8'>
+									<audio class="audioController" id='a8'>
+										<source type="audio/wav" src="soundTest/adsr/Release-Fast.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone low" data-selectid='0'>
+									<p></p>
+									<img src="images/low.png" class="img-responsive" alt="low icon">
+								</div>
+
+								<div class="dropzone high" data-selectid='0'>
+									<p></p>
+									<img src="images/high.png" class="img-responsive" alt="high icon">
+								</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Page 30: Audio Effects-->
+	<div class="modal fade"  tabindex="-1" id="modalId30" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Fuel Economy </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each level of fuel economy. </p>
+						<p> Fuel economy is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer30">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="9" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='9'>
+									<audio class="audioController" id='a9' >
+										<source type="audio/wav" src="soundTest/audioEffects/Reverb.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="10" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='10'>
+									<audio class="audioController" id='a10'>
+										<source type="audio/wav" src="soundTest/audioEffects/DELAY.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="11" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='11'>
+									<audio class="audioController" id='a11'>
+										<source type="audio/wav" src="soundTest/audioEffects/EQ Low.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="12" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='12'>
+									<audio class="audioController" id='a12'>
+										<source type="audio/wav" src="soundTest/audioEffects/EQ High.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="13" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='13'>
+									<audio class="audioController" id='a13'>
+										<source type="audio/wav" src="soundTest/audioEffects/LFO.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="14" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='14'>
+									<audio class="audioController" id='a14'>
+										<source type="audio/wav" src="soundTest/audioEffects/Distort.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone low" data-selectid='0'>
+									<p></p>
+									<img src="images/low.png" class="img-responsive" alt="low icon">
+								</div>
+
+								<div class="dropzone high" data-selectid='0'>
+									<p></p>
+									<img src="images/high.png" class="img-responsive" alt="high icon">
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 31: Instruments-->
+	<div class="modal fade"  tabindex="-1" id="modalId31" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Fuel Economy </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each level of fuel economy. </p>
+						<p> Fuel economy is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer31">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="15" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='15'>
+									<audio class="audioController" id='a15' >
+										<source type="audio/wav" src="soundTest/instruments/Wind.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="16" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='16'>
+									<audio class="audioController" id='a16'>
+										<source type="audio/wav" src="soundTest/instruments/Brass.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="17" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='17'>
+									<audio class="audioController" id='a17'>
+										<source type="audio/wav" src="soundTest/instruments/Bass.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="18" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='18'>
+									<audio class="audioController" id='a18'>
+										<source type="audio/wav" src="soundTest/instruments/Xylophone.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="19" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='19'>
+									<audio class="audioController" id='a19'>
+										<source type="audio/wav" src="soundTest/instruments/Piano.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="20" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='20'>
+									<audio class="audioController" id='a20'>
+										<source type="audio/wav" src="soundTest/instruments/Harp-Guitar.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="21" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='21'>
+									<audio class="audioController" id='a21'>
+										<source type="audio/wav" src="soundTest/instruments/Marimba.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="22" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='22'>
+									<audio class="audioController" id='a22'>
+										<source type="audio/wav" src="soundTest/instruments/String.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone low" data-selectid='0'>
+									<p></p>
+									<img src="images/low.png" class="img-responsive" alt="low icon">
+								</div>
+
+								<div class="dropzone high" data-selectid='0'>
+									<p></p>
+									<img src="images/high.png" class="img-responsive" alt="high icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 32: Triads-->
+	<div class="modal fade"  tabindex="-1" id="modalId32" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Fuel Economy </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each level of fuel economy. </p>
+						<p> Fuel economy is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer32">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="23" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='23'>
+									<audio class="audioController" id='a23' >
+										<source type="audio/wav" src="soundTest/triads/Major-Down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="24" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='24'>
+									<audio class="audioController" id='a24'>
+										<source type="audio/wav" src="soundTest/triads/Dim-Up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="25" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='25'>
+									<audio class="audioController" id='a25'>
+										<source type="audio/wav" src="soundTest/triads/Dim-Down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="26" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='26'>
+									<audio class="audioController" id='a26'>
+										<source type="audio/wav" src="soundTest/triads/Minor-Up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="27" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='27'>
+									<audio class="audioController" id='a27'>
+										<source type="audio/wav" src="soundTest/triads/Major-Up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="28" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='28'>
+									<audio class="audioController" id='a28'>
+										<source type="audio/wav" src="soundTest/triads/Aug-Up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="29" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='29'>
+									<audio class="audioController" id='a29'>
+										<source type="audio/wav" src="soundTest/triads/Minor-Down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="30" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='30'>
+									<audio class="audioController" id='a30'>
+										<source type="audio/wav" src="soundTest/triads/Aug-Down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone low" data-selectid='0'>
+									<p></p>
+									<img src="images/low.png" class="img-responsive" alt="low icon">
+								</div>
+
+								<div class="dropzone high" data-selectid='0'>
+									<p></p>
+									<img src="images/high.png" class="img-responsive" alt="high icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 33: Icons-->
+	<div class="modal fade"  tabindex="-1" id="modalId33" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Fuel Economy </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each level of fuel economy. </p>
+						<p> Fuel economy is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer33">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="81" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='81'>
+									<audio class="audioController" id='a81' >
+										<source type="audio/wav" src="soundTest/Icon/slurp1.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="82" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='82'>
+									<audio class="audioController" id='a82'>
+										<source type="audio/wav" src="soundTest/Icon/slurp3.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone low" data-selectid='0'>
+									<p></p>
+									<img src="images/low.png" class="img-responsive" alt="low icon">
+								</div>
+
+								<div class="dropzone high" data-selectid='0'>
+									<p></p>
+									<img src="images/high.png" class="img-responsive" alt="high icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 34: Speech-->
+	<div class="modal fade"  tabindex="-1" id="modalId34" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Fuel Economy </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each level of fuel economy. </p>
+						<p> Fuel economy is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer34">
+						<div class="row">
+							<div class="col-xs-12">
+
+								<div id="87" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='87'>
+									<audio class="audioController" id='a87'>
+										<source type="audio/wav" src="soundTest/Speech/40-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="88" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='88'>
+									<audio class="audioController" id='a88' >
+										<source type="audio/wav" src="soundTest/Speech/10-crystal.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="89" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='89'>
+									<audio class="audioController" id='a89'>
+										<source type="audio/wav" src="soundTest/Speech/10-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="90" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='90'>
+									<audio class="audioController" id='a90'>
+										<source type="audio/wav" src="soundTest/Speech/40-crystal.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone low" data-selectid='0'>
+									<p></p>
+									<img src="images/low.png" class="img-responsive" alt="low icon">
+								</div>
+
+								<div class="dropzone high" data-selectid='0'>
+									<p></p>
+									<img src="images/high.png" class="img-responsive" alt="high icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Page 35: Scales-->
+	<div class="modal fade"  tabindex="-1" id="modalId35" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Fuel Economy </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each level of fuel economy. </p>
+						<p> Fuel economy is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer35">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="37" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='37'>
+									<audio class="audioController" id='a37' >
+										<source type="audio/wav" src="soundTest/scales/min-harm-down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+
+								<div id="39" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='39'>
+									<audio class="audioController" id='a39'>
+										<source type="audio/wav" src="soundTest/scales/min-harm-up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="40" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='40'>
+									<audio class="audioController" id='a40'>
+										<source type="audio/wav" src="soundTest/scales/blues-up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="41" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='41'>
+									<audio class="audioController" id='a41'>
+										<source type="audio/wav" src="soundTest/scales/maj-pent-up.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="42" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='42'>
+									<audio class="audioController" id='a42'>
+										<source type="audio/wav" src="soundTest/scales/maj-pent-down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+
+								<div id="44" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='44'>
+									<audio class="audioController" id='a44'>
+										<source type="audio/wav" src="soundTest/scales/blues-down.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone low" data-selectid='0'>
+									<p></p>
+									<img src="images/low.png" class="img-responsive" alt="low icon">
+								</div>
+
+								<div class="dropzone high" data-selectid='0'>
+									<p></p>
+									<img src="images/high.png" class="img-responsive" alt="high icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Page 36: Fuel Eco Survey-->
+	<div class="modal fade"  tabindex="-1" id="modalId36" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Fuel Economy Survey </h2>
+					<div class="panel-body">
+					<p> <b> Fuel economy </b> is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="panel-body" id="modalContainer36">
+								<p> In the section you just completed you picked sounds that best represent levels of fuel economy. We now would like you to complete a short survey about the three different types of sounds you heard (music, icon, and voice). Please listen to the example of each type of sound, and then click the hyperlink to fill out the survey. <b>Once you have completed the survey</b>, return to this page and click “next” finish the study. </p>
+
+								<p><b>"Music" sound</b>.</p>
+								<audio controls>
+									<source src="soundTest/earcon/economic.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p> </p>
+								<p><b>"Icon" sound</b>.</p>
+								<audio controls>
+									<source src="soundTest/Icon/slurp1.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p> </p>
+								<p><b>"Voice" sound</b>.</p>
+								<audio controls>
+									<source src="soundTest/Speech/40-crystal.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p> </p>
+								<p><b>"Music and Voice" sound</b>.</p>
+								<audio controls>
+									<source src="soundTest/earcon/economic-v.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p> </p>
+								<p><b>"Icon and Voice" sound</b>.</p>
+								<audio controls>
+									<source src="soundTest/Icon/economic-i.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p> </p>
+								<p> <a href="https://www.surveymonkey.com/r/WSFGRZG" target="_blank" ><b>Click here to take the survey</b></a>  </p>
+
+								<div class="has-success">
+									<div class="checkbox">
+										<label>
+										<input type="checkbox" id="checkboxSuccess" value="option1">
+										Check if you have completed the above survey.
+										</label>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 37: Register-->
+	<div class="modal fade"  tabindex="-1" id="modalId37" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Fuel Economy </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each level of fuel economy. </p>
+						<p> Fuel economy is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer37" >
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="45" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='45'>
+									<audio class="audioController" id='a45' >
+										<source type="audio/wav" src="soundTest/Register/C2DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="46" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='46'>
+									<audio class="audioController" id='a46'>
+										<source type="audio/wav" src="soundTest/Register/C4UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="47" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='47'>
+									<audio class="audioController" id='a47'>
+										<source type="audio/wav" src="soundTest/Register/C2UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="48" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='48'>
+									<audio class="audioController" id='a48'>
+										<source type="audio/wav" src="soundTest/Register/C3DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="49" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='49'>
+									<audio class="audioController" id='a49'>
+										<source type="audio/wav" src="soundTest/Register/C4DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="50" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='50'>
+									<audio class="audioController" id='a50'>
+										<source type="audio/wav" src="soundTest/Register/C3UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone low" data-selectid='0'>
+									<img src="images/low.png" class="img-responsive" alt="low icon">
+								</div>
+
+								<div class="dropzone mlow" data-selectid='0'>
+									<img src="images/mlow.png" class="img-responsive" alt="mlow icon">
+								</div>
+
+								<div class="dropzone mhigh" data-selectid='0'>
+									<img src="images/mhigh.png" class="img-responsive" alt="mhigh icon">
+								</div>
+
+								<div class="dropzone high" data-selectid='0'>
+									<img src="images/high.png" class="img-responsive" alt="high icon">
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 38: Range-->
+	<div class="modal fade"  tabindex="-1" id="modalId38" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Fuel Economy </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each level of fuel economy. </p>
+						<p> Fuel economy is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer38">
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="51" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='51'>
+									<audio class="audioController" id='a51' >
+										<source type="audio/wav" src="soundTest/Range/0-5UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="52" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='52'>
+									<audio class="audioController" id='a52'>
+										<source type="audio/wav" src="soundTest/Range/1-4UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="53" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='53'>
+									<audio class="audioController" id='a53'>
+										<source type="audio/wav" src="soundTest/Range/2-3UP.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="54" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='54'>
+									<audio class="audioController" id='a54'>
+										<source type="audio/wav" src="soundTest/Range/5-0DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="55" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='55'>
+									<audio class="audioController" id='a55'>
+										<source type="audio/wav" src="soundTest/Range/4-1DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="56" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='56'>
+									<audio class="audioController" id='a56'>
+										<source type="audio/wav" src="soundTest/Range/3-2DOWN.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone low" data-selectid='0'>
+									<img src="images/low.png" class="img-responsive" alt="low icon">
+								</div>
+
+								<div class="dropzone mlow" data-selectid='0'>
+									<img src="images/mlow.png" class="img-responsive" alt="mlow icon">
+								</div>
+
+								<div class="dropzone mhigh" data-selectid='0'>
+									<img src="images/mhigh.png" class="img-responsive" alt="mhigh icon">
+								</div>
+
+								<div class="dropzone high" data-selectid='0'>
+									<img src="images/high.png" class="img-responsive" alt="high icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 39: Rhythm-->
+	<div class="modal fade"  tabindex="-1" id="modalId39" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Fuel Economy </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each level of fuel economy. </p>
+						<p> Fuel economy is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer39">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="57" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='57'>
+									<audio class="audioController" id='a57' >
+										<source type="audio/wav" src="soundTest/Rhythm/slow.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="58" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='58'>
+									<audio class="audioController" id='a58'>
+										<source type="audio/wav" src="soundTest/Rhythm/increase.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="59" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='59'>
+									<audio class="audioController" id='a59'>
+										<source type="audio/wav" src="soundTest/Rhythm/fast.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="60" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='60'>
+									<audio class="audioController" id='a60'>
+										<source type="audio/wav" src="soundTest/Rhythm/decrease.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone low" data-selectid='0'>
+									<img src="images/low.png" class="img-responsive" alt="low icon">
+								</div>
+
+								<div class="dropzone mlow" data-selectid='0'>
+									<img src="images/mlow.png" class="img-responsive" alt="mlow icon">
+								</div>
+
+								<div class="dropzone mhigh" data-selectid='0'>
+									<img src="images/mhigh.png" class="img-responsive" alt="mhigh icon">
+								</div>
+
+								<div class="dropzone high" data-selectid='0'>
+									<img src="images/high.png" class="img-responsive" alt="high icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 40: Icon-->
+	<div class="modal fade"  tabindex="-1" id="modalId40" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Fuel Economy</h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each level of fuel economy. </p>
+						<p> Fuel economy is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer40">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="83" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='83'>
+									<audio class="audioController" id='a83' >
+										<source type="audio/wav" src="soundTest/Icon/slurp2.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="84" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='84'>
+									<audio class="audioController" id='a84'>
+										<source type="audio/wav" src="soundTest/Icon/slurp.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="85" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='85'>
+									<audio class="audioController" id='a85'>
+										<source type="audio/wav" src="soundTest/Icon/slurp3.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="86" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='86'>
+									<audio class="audioController" id='a86'>
+										<source type="audio/wav" src="soundTest/Icon/slurp1.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone low" data-selectid='0'>
+									<img src="images/low.png" class="img-responsive" alt="low icon">
+								</div>
+
+								<div class="dropzone mlow" data-selectid='0'>
+									<img src="images/mlow.png" class="img-responsive" alt="mlow icon">
+								</div>
+
+								<div class="dropzone mhigh" data-selectid='0'>
+									<img src="images/mhigh.png" class="img-responsive" alt="mhigh icon">
+								</div>
+
+								<div class="dropzone high" data-selectid='0'>
+									<img src="images/high.png" class="img-responsive" alt="high icon">
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 41: Speech-->
+	<div class="modal fade"  tabindex="-1" id="modalId41" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Informed Fuel Economy </h2>
+					<div class="panel-body">
+						<p> Choose which sound you think best represents each level of fuel economy. </p>
+						<p> Fuel economy is information about a driver’s average gas mileage. </p>
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="panel-body" id="modalContainer41">
+						<div class="row">
+							<div class="col-xs-12">
+								<div id="91" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" alt="sound icon" data-audioid='91'>
+									<audio class="audioController" id='a91' >
+										<source type="audio/wav" src="soundTest/Speech/10-crystal.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="92" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='92'>
+									<audio class="audioController" id='a92'>
+										<source type="audio/wav" src="soundTest/Speech/20-crystal.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="93" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='93'>
+									<audio class="audioController" id='a93'>
+										<source type="audio/wav" src="soundTest/Speech/30-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="94" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='94'>
+									<audio class="audioController" id='a94'>
+										<source type="audio/wav" src="soundTest/Speech/40-crystal.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="95" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='95'>
+									<audio class="audioController" id='a95'>
+										<source type="audio/wav" src="soundTest/Speech/10-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="96" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='96'>
+									<audio class="audioController" id='a96'>
+										<source type="audio/wav" src="soundTest/Speech/30-crystal.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="97" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='97'>
+									<audio class="audioController" id='a97'>
+										<source type="audio/wav" src="soundTest/Speech/20-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+
+								<div id="98" class="sound">
+									<img src="images/sound.png" class="soundController" class="img-responsive" height="30" width="30" alt="sound icon" data-audioid='98'>
+									<audio class="audioController" id='a98'>
+										<source type="audio/wav" src="soundTest/Speech/40-mike.wav" >
+										Your browser does not support the audio element.
+									</audio>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="dropzone low" data-selectid='0'>
+									<img src="images/low.png" class="img-responsive" alt="low icon">
+								</div>
+
+								<div class="dropzone mlow" data-selectid='0'>
+									<img src="images/mlow.png" class="img-responsive" alt="mlow icon">
+								</div>
+
+								<div class="dropzone mhigh" data-selectid='0'>
+									<img src="images/mhigh.png" class="img-responsive" alt="mhigh icon">
+								</div>
+
+								<div class="dropzone high" data-selectid='0'>
+									<img src="images/high.png" class="img-responsive" alt="high icon">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="alert alert-danger" role="alert" style = "display:none">You must choose one sound for each icon.</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!--Page 42: Thank you-->
+	<div class="modal fade"  tabindex="-1" id="modalId42" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Thank you </h2>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+
+						<div class="col-xs-12">
+							<div class="panel-body" id="modalContainer42">
+
+								<p> <b> Stop Here & Leave Page As Is </b> Thank you for taking part in this research study. Your responses will be used to help us improve the sounds used in our eco-driving display project. </p>
+
+								<p> This is the end of the research trials, please see the experimenter for the exit survey. </p>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--This will be the last page that exists, where you fill in the name of the text file.-->
+	<div class="modal fade"  tabindex="-1" id="modalIdLast" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Save Responses </h2>
+				</div>
+
+				<div class="modal-body">
+					<textarea id="id" rows="1">Type file name here</textarea> <!--Whatever you change the text to will be the name of the file created for download once you click the save button.-->
+				</div>
+
+				<div class="modal-footer">
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="writeFile();">Save</button>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<!--Page 43: Instructions for Part 3-->
+	<div class="modal fade"  tabindex="-1" id="modalId43" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Instructions: Driving Instruction </h2>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+
+						<div class="col-xs-12">
+							<div class="panel-body" id="modalContainer43">
+								<p> For the next series of pages, you will listen to a set of sounds and choose which one you think best represents each driving instruction. A <b>driving instruction</b> is a direction or order that provides the driver advice on how to change their current driving behavior. For example, the audible “beep” of a backing up sensor informs the driver to stop reversing. This is a driving instruction.  </p>
+
+								<p> To listen to each of the sounds, double click on the sound icon. Once the sound begins playing, it will continue until it's over. There is no way to stop the sound early. </p>
+
+								<p> Your goal/task is to assign each driving instruction a sound. You can think of this as the sound that best represents that driving instruction in your opinion. You may pick the sound because it reminds you of the actual driving event or for some other reason. There is no right or wrong answer, just choose which sound you think best fits each driving instruction. </p>
+
+								<p> Click and drag one sound icon into each of the gray boxes below, then hit the "check" button. You must assign only one sound for each box. You may change your choices as many times as you like before you hit the “check” button. </p>
+
+								<p> If you do not place one sound icon on each box, you will get an alert at the bottom, and you will not be able to move on to the next page until each box contains one sound icon. </p>
+
+								<p> There is a progress bar at the bottom of each page, and it will tell you how many pages you have left. </p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+						<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Page 44: Instructions vs. Informed-->
+	<div class="modal fade"  tabindex="-1" id="modalId44" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title"> Driving Instructions vs. Informed Survey </h2>
+					<p>An <b> Eco-driving display</b> provides information about driving behaviour to assist users in becoming more eco-friendly drivers.</p>
+					<div class="panel-body">
+					</div>
+				</div>
+
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="panel-body" id="modalContainer44">
+								<p> In the two sections you just completed, you picked sounds that represented either driving instructions or informed driving status. We now would like you to complete a short survey about the two different types of information you heard (driving instructions vs. driving status). Please listen to the examples of each type of information, and then click the hyperlink to fill out the survey. <b>Once you have completed the survey</b>, return to this page and click “next” finish the study. </p>
+								<p></p>
+								<p> A <b> driving instruction </b> is a direction or order that advises the driver how to change their driving behavior </p>
+								<p> <b> Driving Instruction </b> Examples for “Accelerate”: </p>
+								<p><b>"Music" Instruction</b>.</p>
+								<audio controls>
+									<source src="soundTest/earcon/accelerate.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p><b>"Icon" Instruction</b>.</p>
+								<audio controls>
+									<source src="soundTest/Icon/accelerate.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p><b>"Voice" Instruction</b>.</p>
+								<audio controls>
+									<source src="soundTest/Speech/accelerate-crystal.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p> </p>
+								<p> A <b> driving status </b> is information about a driver’s current behavior. </p>
+								<p> <b> Driving Status </b> Examples for “Insufficient Acceleration”: </p>
+								<p><b>"Music" Status</b>.</p>
+								<audio controls>
+									<source src="soundTest/earcon/insufficient.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p><b>"Icon" Status</b>.</p>
+								<audio controls>
+									<source src="soundTest/Icon/decelerate.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+								<p><b>"Voice" Status</b>.</p>
+								<audio controls>
+									<source src="soundTest/Speech/insufficient-crystal.wav" type="audio/wav">
+								our browser does not support the audio element.
+								</audio>
+
+								<p> <a href="https://www.surveymonkey.com/r/LV882TN" target="_blank" ><b>Click here to take the survey</b></a>  </p>
+
+								<div class="has-success">
+									<div class="checkbox">
+										<label>
+										<input type="checkbox" id="checkboxSuccess" value="option1">
+										Check if you have completed the above survey.
+										</label>
+									</div>
+								</div>
+								<div class="alert alert-danger" role="alert" style = "display:none">You must complete the survey before continuing.</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="launch_modal();">Next</button>
+
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<script type="text/javascript">
+
+		// This is the load order for the pages in the modals
+		//----------------------------------------------------------
+		var order = JSON.parse(sessionStorage["ranOrder"]);
+		console.log("the array we got: " + order.toString());
+
+		var numPages = order.length;
+		// console.log("number of pages is: " + numPages);
+
+		var onPage = 0;
+		var currentPage;
+		var firstTime = true;
+
+
+		// play pretty sounds on icon click
+		//----------------------------------------------------------
+		$(document).ready(function(){
+			$('.soundController').dblclick(function(){
+				//get ID of the audio element we want to play
+				console.log(this);
+				var audioId = $(this).data('audioid');
+				console.log(audioId);
+				$('#a'+audioId).get(0).play(); // generic version of this $('#a1').get(0).play();
+			});
+
+		});
+
+		// stuff for draggable elements and drop zones
+		// following this: http://jsfiddle.net/rsmacaalay/fM63u/
+		//----------------------------------------------------------
+		// this is cool, keep for later $( "div[id^='sound']" ).draggable();
+		$(".sound").draggable({
+			start: function(){
+				Position.init($(this));
+			}
+		},
+		{containment: '#modalContainer'+order[onPage]} //will take the first page it's assigned, we'll reset this each time we're switching modals
+		);
+
+		// keep track of the position to return when it gets rejected.
+		var Position = (function() {
+			return {
+				init: function(object){
+					object.data("origLoc", $(this).originalPosition={top:0,left:0});
+				},
+				reset: function(object){
+					object.data("origLoc").originalPosition = {top:0,left:0};
+				}
+		};
+		})();
+
+
+		$( ".dropzone" ).droppable({
+			// only accept a drop when there's not already an id
+			// otherwise, try to revert it
+			drop: function(event, ui) {
+
+				// All dropzones start with a selectid of 0; so it's still 0 when none are added to it
+				if($(this).data('selectid') === 0){
+					console.log(ui.draggable[0].id + " dropped to " + this.classList[1]);
+
+					//syntax for accessing the id of the data/image object:
+					console.log($(this).data('selectid'));
+
+					$(this).data('selectid', ui.draggable[0].id);
+					console.log("new select id is " + $(this).data('selectid'));
+				}
+				// Allows repositioning of the same icon/sound on the same dropzone
+				else if($(this).data('selectid') === ui.draggable[0].id){
+					console.log("this is the same one. let it be placed again.");
+				}
+				// A sound/icon is already on this dropzone, revert the most-recently-dragged one to the original location.
+				else{
+					$('#'+(ui.draggable[0].id)).animate($('#'+(ui.draggable[0].id)).data().origLoc,"slow");
+				}
+			},
+
+			// dragging over, don't change anything
+			over: function(event, ui){
+				console.log("dragging over something");
+			},
+
+			// this is to track when you pull one of them out of the previous dropzone
+			// handles resetting the selectid to 0, which allows new icons/sounds to be dropped in
+			out: function(event,ui){
+				if($(this).data('selectid') === ui.draggable[0].id){
+					console.log(ui.draggable[0].id + " taken out of "+ this.id);
+					$(this).data('selectid', 0);
+					console.log("updated the id to " + $(this).data('selectid'));
+				}
+				else{
+					console.log("keep the same thing, which is " + $(this).data('selectid'));
+				}
+			}
+		}
+		);
+
+		// Launch modals:
+		// load the modals + update the progress bar
+		//----------------------------------------------------------
+		function launch_modal(){
+
+			var bar = $('.progress-bar');
+			var bar_width = bar.attr('aria-valuenow');
+			bar_width = Number(bar_width) + (100/numPages); // calculates the percentage needed to update with each new modal opened
+
+			// Initial time through, need to setup order
+			if(firstTime === true){
+
+				currentPage = '#modalId'+order[0];
+				$('.progress-bar').attr('aria-valuenow', bar_width);
+				$('.progress-bar').css('width', bar_width+'%');
+
+				$('#modalId'+order[0]).modal('show');
+				console.log("first time through, the current page is: " + currentPage);
+				firstTime = false;
+			}
+			// Any time that's not the initial modal opened
+			else{
+				var areFilled;
+				currentPage ='#modalId'+order[onPage];
+				areFilled = checkValues();
+
+				// if all dropzones are not filled filled, show error alert and have them finish filling dropzones
+				// else  move on to next modal
+				if((areFilled === false) && ($(currentPage).is(":visible"))){
+					$(currentPage + ' .alert-danger').show();
+				}
+				else if((areFilled === true) && ($(currentPage).is(":visible"))){
+					addToCookie(); // record their responses in the cookie
+
+					$(currentPage).modal('hide');
+
+					// is this the best time to update cookies? right before the next page load?
+					$('.progress-bar').attr('aria-valuenow', bar_width);
+					$('.progress-bar').css('width', bar_width+'%');
+
+					if(onPage < order.length-1){
+						onPage+=1;
+						// showing the next modal ONLY after the current modal has
+						// been finished being hidden fixes the issue where the
+						// scroll bar for the modal doesn't appear if the modal
+						// content is taller than the page.
+						$(currentPage).on('hidden.bs.modal', function(e) {
+							$('#modalId'+order[onPage]).modal('show');
+						});
+
+						$(".sound").draggable("option", "containment", '#modalContainer'+order[onPage]);
+						console.log("reset containment to: modalContainer" + order[onPage]);
+					}
+					// shows the last page which lets them fill out name for text file
+					else{
+						console.log("check to see if we're showing the last page");
+						$(currentPage).on('hidden.bs.modal', function(e) {
+							$('#modalIdLast').modal('show');
+						});
+					}
+				}
+			}
+		};
+
+
+		// Check dropzones:
+		// Check to make sure all the values are filled for the dropzones
+		//----------------------------------------------------------
+		function checkValues (){
+			var filled = true;
+
+			// do this eventually: $('#' + currentPage + ' .dropzone')
+			console.log("current page to check is: " + currentPage + ' .dropzone');
+
+			// This loop checks each of the object in the dropzone class on the current page
+			// to make sure the selectid has been changed from the default value (0).
+			$(currentPage + ' .dropzone').each(function(index, obj){
+				if($(obj).data('selectid') === 0)
+				{
+					console.log($(obj).data('selectid')+" has a 0");
+					filled = false;
+				}
+			});
+
+			return filled;
+		};
+
+
+		// File generation:
+		// Pulls the name from the textarea (whose id is id) and create
+		// the text file from the cookie values
+		//----------------------------------------------------------
+		function writeFile () {
+			var link = document.getElementById('downloadLink');
+			var name = document.getElementById('id').value;
+			link.href = makeTextFile(document.cookie);
+			link.download = name + ".txt";
+			link.style.display = 'block';
+
+			$('#alertFinish').show();
+			$('#start').hide();
+		};
+
+		// File writing:
+		// Actual writing to the text file
+		textFile = null,
+		  makeTextFile = function (text) {
+			var data = new Blob([text], {type: 'text/plain'});
+
+			// If we are replacing a previously generated file we need to
+			// manually revoke the object URL to avoid memory leaks.
+			if (textFile !== null) {
+			  window.URL.revokeObjectURL(textFile);
+			}
+
+			textFile = window.URL.createObjectURL(data);
+
+			return textFile;
+		  };
+
+
+
+		// Cookie stuff:
+		// Makes the cookie before the first modal is launched and pushes the
+		// order generated by the intro page into the cookie.
+		//----------------------------------------------------------
+		function makeCookie(){
+
+			// creates the cookie
+			document.cookie = "order=" + order.toString();
+
+			var cookie = document.cookie;
+
+			// Get all the cookies pairs in an array
+		   var cookiearray  = cookie.split(';');
+
+		   // Now take key value pair out of this array
+		   for(var i=0; i<cookiearray.length; i++){
+			  var cookieName = cookiearray[i].split('=')[0];
+			  var value = cookiearray[i].split('=')[1];
+			  //alert("Key is : " + cookieName + " and Value is : " + value);
+		   }
+
+		   launch_modal();
+		};
+
+		// Update cookie:
+		// Add the pairings to the cookie (for each modal!)
+		//----------------------------------------------------------
+		function addToCookie(){
+			var pageSet="";
+
+			// need to switch to currentPage later, cause that's how we'll do multiple ones~
+
+			if($(currentPage).is(":visible")){
+				$(currentPage + ' .dropzone').each(function(index, obj){
+					//console.log($(obj).data('selectid'));
+					if($(obj).data('selectid') !== 0){
+						pageSet = (pageSet + this.classList[1] + "," + $(obj).data('selectid') + ',');
+					}
+				});
+
+				// Get all the cookies pairs in an array
+				var cookieName, value;
+
+				value = pageSet;
+				document.cookie = currentPage +"=" + value; // adds what modal page we're on to the cookie, and the matches for each icon + sound
+
+				//document.cookie = pageSet;
+				console.log("key is: " + currentPage + " value: " + value);
+
+				var cookie = document.cookie;
+				var cookiearray  = cookie.split(';');
+
+				// Now take key value pair out of this array
+				for(var i=0; i<cookiearray.length; i++){
+					var cookieName = cookiearray[i].split('=')[0];
+					var value = cookiearray[i].split('=')[1];
+					//alert("Key is : " + cookieName + " and Value is : " + value);
+				}
+
+			}
+
+			console.log("this page: " + currentPage);
+
+		};
+
+		//Do we need to delete cookie after the responses are saved off? (that way it won't run into problems with others? I think so.
+
+	</script>
+
+	<!--remember that jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

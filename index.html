@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<!--Woodbury Shortridge - user-centered design for auditory eco-driving interface. Orig. drag/drop testing by Brianna Tomlinson with help/formatting assistance from Joshua
+	Lapinski. GT sonification lab.-->
+
+	<!--This is the introduction page. It generates the order for the Bootstrap modals during
+	the actual experimental trials. Right now it's set for 10 pages, but can be changed
+	to work with any order.-->
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>Sound Card Sorting Web Page Test</title>
+
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<!--jQuery-->
+		<script src="js/jquery-2.1.3.min.js"></script>
+
+		<!--jQuery-UI-->
+		<script src="js/jquery-ui.js"></script>
+		<link rel="stylesheet" href="css/jquery-ui.css">
+
+	</head>
+
+	<body>
+
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xs-2"></div>
+
+				<div class="col-xs-8">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">Order assignment</h3>
+						</div>
+
+						<div class="panel-body">
+
+							<p> Thank you for agreeing to participate in our study! Your participation will be used to help us improve the sounds used in our eco-driving display project. An <b> eco-driving display</b> provides information about driving behavior to assist users in becoming more eco-friendly drivers. First, you'll do a short tutorial on the how you'll be completing each task. Please press the Next button.</p>
+
+							<!--put a button in to create the order of the pages -->
+							<button type="button" id="next" class="btn-lg btn-default" onclick="assignOrder();">Next</button>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xs-2"></div>
+
+			</div>
+
+		</div>
+
+
+		<script type="text/javascript">
+
+			var rand = ([1,2]);
+
+			var	orderP1 = ([1,2,3,4,5,6,7,9,10,11,12,13]); //force choice with one per category
+			// [14] is the instructions for part 2
+			var orderP2 = ([15,16,17,18,19,20,21,23,24,25,26,27]);
+			// [28] is the instructions for part 3
+			var orderP3 = ([29,30,31,32,33,34,35,37,38,39,40,41]);
+
+			var order;
+
+
+			// printing to test it, too
+			function assignOrder(){
+				shuffle(orderP1);
+				shuffle(orderP2);
+				shuffle(orderP3)
+				shuffle(rand);
+
+				if (rand[0]===1)
+					{
+					order=[43];
+					order=order.concat(orderP1);
+					order=order.concat([8]); //survey
+					order=order.concat([14]); //instructions pt.2
+					order=order.concat(orderP2);
+					order=order.concat([22]); //survey
+					order=order.concat([44]);
+					}
+
+				else {
+					order=[14];
+					order=order.concat(orderP2);
+					order=order.concat([22]); //survey
+					order=order.concat([43]); //instructions pt.1
+					order=order.concat(orderP1);
+					order=order.concat([8]); //survey
+					order=order.concat([44]);
+					}
+				order=order.concat([28]); //instructions pt.3
+				order=order.concat(orderP3);
+				order=order.concat([36]);
+				console.log(order);
+				next();
+
+			}
+
+			// shuffle the order of the array to generate randomly.
+			function shuffle(array){
+				var i = array.length;
+				var j = 0;
+				var temp;
+
+				while(i--){
+					j = Math.floor(Math.random() * (i+1));
+
+					// swap random spot
+					temp = array[i];
+					array[i] = array[j];
+					array[j] = temp;
+				}
+
+				return array;
+			}
+
+			// onClick function to go to the next page
+			function next() {
+				// probably use a session storage object, it's kept for until browser
+				// is closed
+				//store the order in the session storage for browser
+				sessionStorage["ranOrder"] = JSON.stringify(order);
+
+				location.href = "tutorialPage.html"; //loads the tutorial page
+			};
+
+		</script>
+
+		<!--remember that jQuery (necessary for Bootstrap's JavaScript plug-ins) -->
+		<!-- Include all compiled plug-ins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>
